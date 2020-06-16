@@ -7,6 +7,7 @@ const elements = {
     todoInput: document.querySelector('.todo-input'),
     todoBtn: document.querySelector('.todo-btn'),
     todoList: document.querySelector('.todo-list'),
+    todoItem: document.querySelector('.todo'),
 };
 
 
@@ -17,12 +18,18 @@ const addTodo = e => {
     const markup = `
     <div class="todo">
         <li class="todo-item">${elements.todoInput.value}</li>
-        <button class="btn-complete btn"><i class="far fa-check-square"></i></button>
-        <button class="btn-delete btn"><i class="far fa-trash-alt"></i></button>
+        <button class="btn-complete btn"><i class="far fa-check-square" icon></i></button>
+        <button class="btn-delete btn"><i class="far fa-trash-alt" icon></i></button>
     </div>
     `
     elements.todoList.insertAdjacentHTML('beforeend', markup);
 };
+
+const deleteTodo = e => {
+    const deleteBtn = e.target.closest('.btn-delete');
+    if (deleteBtn) deleteBtn.parentElement.remove(elements.todoItem);
+};
+
 
 
 /**
@@ -36,8 +43,6 @@ const controller = e => {
 
     // Clear field
     clearField(elements.todoInput);
-
-    // Delete item from UI
 };
 
 
@@ -45,3 +50,4 @@ const controller = e => {
  * EVENT HANDLER
  */
 elements.todoBtn.addEventListener('click', controller);
+elements.todoList.addEventListener('click', deleteTodo);
