@@ -11,7 +11,9 @@ const elements = {
 };
 
 
-
+/**
+ *  FUNCTIONS
+ */
 const clearField = field => field.value = '';
 
 const addTodo = e => {
@@ -24,13 +26,6 @@ const addTodo = e => {
     `
     elements.todoList.insertAdjacentHTML('beforeend', markup);
 };
-
-const deleteTodo = e => {
-    const deleteBtn = e.target.closest('.btn-delete');
-    if (deleteBtn) deleteBtn.parentElement.remove(elements.todoItem);
-};
-
-
 
 /**
  *  CONTROLLER
@@ -50,4 +45,17 @@ const controller = e => {
  * EVENT HANDLER
  */
 elements.todoBtn.addEventListener('click', controller);
-elements.todoList.addEventListener('click', deleteTodo);
+
+elements.todoList.addEventListener('click', e => {
+    const deleteBtn = e.target.closest('.btn-delete');
+    const completeBtn = e.target.closest('.btn-complete');
+
+    // Delete todo
+    if (deleteBtn) {
+        deleteBtn.parentElement.remove(elements.todoItem); 
+
+    // Complete todo
+    } else if (completeBtn) {
+        completeBtn.parentElement.classList.toggle('completed');
+    };
+});

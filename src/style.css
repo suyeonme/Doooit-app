@@ -66,6 +66,7 @@ form button:hover {
     background-color: #fff;
     color: black;
     margin: .5rem;
+    transition: all .5s ease;
 }
 
 .todo li {
@@ -87,4 +88,9 @@ form button:hover {
 
 .btn-complete {
     background-color: #99b898;
+}
+
+.completed {
+    text-decoration: line-through;
+    opacity: .5;
 }
