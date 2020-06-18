@@ -9,6 +9,7 @@ const elements = {
     todoContainer: document.querySelector('.todo-container'),
     todoList: document.querySelector('.todo-list'),
     todoItem: document.querySelector('.todo'),
+    filterOption: document.querySelector('.filter-todo')
 };
 
 /**
@@ -27,10 +28,35 @@ const addTodo = e => {
     elements.todoList.insertAdjacentHTML('beforeend', markup);
 };
 
+const filterTodo = e => {
+    const todos = elements.todoList.childNodes;
+
+    todos.forEach(todo => {
+        if (todo.classList !== undefined) {
+            switch (e.target.value) {
+                case "all":
+                    todo.style.display = "flex";
+                    break;
+                case "completed":
+                    if (todo.classList.contains("completed")) {
+                        todo.style.display = "flex";
+                    } else {
+                        todo.style.display = "none";
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        return;
+    });
+};
+
+
 /**
- *  CONTROLLER
+ * EVENT HANDLER
  */
-const controller = e => {
+elements.todoBtn.addEventListener('click', e => {
     e.preventDefault();
 
     // Add item to UI
@@ -38,14 +64,8 @@ const controller = e => {
 
     // Clear field
     clearField(elements.todoInput);
-};
+});
 
-
-
-/**
- * EVENT HANDLER
- */
-elements.todoBtn.addEventListener('click', controller);
 
 elements.todoList.addEventListener('click', e => {
     const item = e.target;
@@ -54,7 +74,7 @@ elements.todoList.addEventListener('click', e => {
         // Click complete button
         item.parentElement.classList.toggle('completed');
 
-      // Click remove button  
+        // Click remove button  
     } else if (item.matches('.btn-delete, .btn-delete *')) {
         item.parentElement.classList.add('fall');
         item.parentElement.addEventListener('transitionend', e => {
@@ -62,3 +82,5 @@ elements.todoList.addEventListener('click', e => {
         });
     }
 });
+
+elements.filterOption.addEventListener('change', filterTodo);

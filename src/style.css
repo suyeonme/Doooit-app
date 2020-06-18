@@ -103,3 +103,38 @@ form button:hover {
 .icon {
     pointer-events: none;
 }
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    border: none;
+
+    color: #ff9a76;
+    width: 15rem;
+    cursor: pointer;
+    padding: 1rem;
+}
+
+.select {
+    position: relative;
+    margin: 1rem;
+    overflow: hidden;
+}
+
+.select::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    content: "\25BC";
+    padding: 1.2rem;
+    background-color: #ff9a76;
+    pointer-events: none;
+    transition: all .4s ease;
+}
+
+.select:hover::after {
+    background-color: #fff;
+    color: #ff9a76;
+}
