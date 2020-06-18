@@ -63,7 +63,7 @@ form button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #fff;
+    background-color: white;
     color: black;
     margin: .5rem;
     transition: all .5s ease;
@@ -75,6 +75,11 @@ form button:hover {
 
 .todo-item {
     padding: 0 .5rem;
+}
+
+.fall {
+    transform: translateY(8rem) rotateZ(20deg);
+    opacity: 0;
 }
 
 .btn {
@@ -93,4 +98,8 @@ form button:hover {
 .completed {
     text-decoration: line-through;
     opacity: .5;
+}
+
+.icon {
+    pointer-events: none;
 }
