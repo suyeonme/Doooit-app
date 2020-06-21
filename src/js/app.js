@@ -77,7 +77,7 @@ const storageController = (function() {
     };
 
     return {
-            saveLocalTodo: function(todo) {
+            saveStorage: function(todo) {
                 // CHECK TODO EXIST IN LOCAL STORAGE
                 checkStorage();
 
@@ -93,6 +93,7 @@ const storageController = (function() {
                 todos = JSON.parse(localStorage.getItem('todos'));
         
                 todos.forEach(todo => {
+                    const todoList = document.querySelector('.todo-list');
                     const markup = `
                         <div class="todo">
                             <li class="todo-item">${todo}</li>
@@ -100,14 +101,14 @@ const storageController = (function() {
                             <button class="btn-delete btn"><i class="far fa-trash-alt icon"></i></button>
                         </div>
                     `;
-                    document.querySelector('.todo-list').insertAdjacentHTML('beforeend', markup);
+                    todoList.insertAdjacentHTML('beforeend', markup);
                 })
             };
         }, 
         
         removeTodo: function(todo) {
             checkStorage();
-            const todoIndex = todo.children[0].innerText;
+            const todoIndex = todo.children[0].innerText; // Improve
             todos.splice(todos.indexOf(todoIndex), 1);
             localStorage.setItem('todos', JSON.stringify(todos));
         }
@@ -129,7 +130,7 @@ const controller = (function(UICtrl, storageCtrl) {
         UICtrl.addTodo();
 
         // Save todo in local storage
-        storageCtrl.saveLocalTodo(string.todoInput.value);
+        storageCtrl.saveStorage(string.todoInput.value);
 
         // Clear field
         UICtrl.clearField(string.todoInput);
@@ -146,7 +147,7 @@ const controller = (function(UICtrl, storageCtrl) {
         // Click remove button  
         } else if (item.matches('.btn-delete, .btn-delete *')) {
             todo.classList.add('fall');
-            todo.addEventListener('transitionend', e => item.remove()); 
+            todo.addEventListener('transitionend', () => todo.remove()); 
             storageCtrl.removeTodo(todo);
         };
     });

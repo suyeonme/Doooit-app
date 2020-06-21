@@ -1,3 +1,8 @@
+:root {
+    --main-blue-color: #395587;
+    --main-orange-color: #eb8242;
+}
+
 *,
 *::before,
 *::after {
@@ -8,53 +13,118 @@
 
 html {
     box-sizing: border-box;
-    font-size: 62.5%; 
+    font-size: 62.5%;
 }
 
 body {
-    font-family: 'Josefin Sans', sans-serif;
-    background-image: linear-gradient(120deg, #abc2e8, #dbc6eb);
-    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    background-color: #fff;
+    color: black;
 }
 
-header, form {
-    min-height: 20vh;
+header,
+.form {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 header {
-    font-size: 2rem;
+    flex-direction: column;
+    position: relative;
 }
 
-form input, form button {
+.header-logo {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 2rem;
+}
+
+.header-logo img {
+    width: 7rem;
+}
+
+.header-logo p {
+    font-family: 'Notable', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 0;
+    margin-left: -1rem;
+}
+
+.form {
+    margin-bottom: 5rem;
+}
+
+form input {
     padding: 1rem;
     border: none;
     font-size: 2rem;
+    border: 1px solid black;
+    border-radius: 3px;
     background: #fff;
+    min-width: 25%;
+}
+form input:focus {
+    outline: none;
 }
 
+.img-container img {
+    width: 100%;
+}
+
+.img-container {
+    position: absolute;
+}
+
+.img-container--1 {
+    top: 90%;
+    right: 13%;
+    width: 12%;
+}
+
+.img-container--2 {
+    top: 190%;
+    left: 10%;
+    width: 17%;
+}
+
+/* TODO ITEM */
 form button {
-    background-color: #fff;
-    color: #726a95;
-    cursor: pointer;
+    padding: 1rem;
+    border: none;
+    font-size: 2rem;
 }
 
-form button:hover {
-    background-color: #726a95;
+.btn {
     color: #fff;
-    transition: all .3s ease-in;
+    background-color: var(--main-orange-color);
+    border: none;
+    padding: 1.2rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.btn-complete {
+    background-color: var(--main-blue-color);
+}
+
+.icon {
+    pointer-events: none;
+    font-size: 1.5rem;
 }
 
 .todo-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 7rem;
 }
 
 .todo-list {
-    min-width: 20%;
+    min-width: 25%;
     list-style: none;
 }
 
@@ -67,41 +137,13 @@ form button:hover {
     color: black;
     margin: .5rem;
     transition: all .5s ease;
+    border: 1px solid black;
+    border-radius: 3px;
 }
 
 .todo li {
     flex: 1;
-}
-
-.todo-item {
     padding: 0 .5rem;
-}
-
-.fall {
-    transform: translateY(8rem) rotateZ(20deg);
-    opacity: 0;
-}
-
-.btn {
-    color: #fff;
-    background-color: #ff9a76;
-    border: none;
-    padding: 1.2rem;
-    cursor: pointer;
-    font-size: 1.2rem;
-}
-
-.btn-complete {
-    background-color: #99b898;
-}
-
-.completed {
-    text-decoration: line-through;
-    opacity: .5;
-}
-
-.icon {
-    pointer-events: none;
 }
 
 select {
@@ -109,9 +151,8 @@ select {
     -moz-appearance: none;
     appearance: none;
     outline: none;
-    border: none;
-
-    color: #ff9a76;
+    border: 1px solid black;
+    color: black;
     width: 15rem;
     cursor: pointer;
     padding: 1rem;
@@ -129,12 +170,62 @@ select {
     right: 0;
     content: "\25BC";
     padding: 1.2rem;
-    background-color: #ff9a76;
+    background-color: black;
+    color: white;
     pointer-events: none;
     transition: all .4s ease;
 }
 
-.select:hover::after {
-    background-color: #fff;
-    color: #ff9a76;
+/* TRANSITION */
+.fall {
+    transform: translateY(8rem) rotateZ(20deg);
+    opacity: 0 !important;
+}
+
+.completed {
+    text-decoration: line-through;
+    opacity: .5;
+}
+
+/* TEXT */
+h1 {
+    font-family: 'Notable', sans-serif;
+    font-size: 8rem;
+    margin-bottom: 5rem;
+}
+
+header p {
+    font-size: 2.5rem;
+    letter-spacing: 5px;
+}
+
+/* BUTTON */
+button:focus {
+    outline: none;
+}
+
+.btn-circle-color {
+    position: relative;
+    width: 7rem;
+    height: 7rem;
+    background-color: var(--main-orange-color);
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+.btn-circle,
+.btn-circle:link,
+.btn-circle:visited {
+    position: absolute;
+    top: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    padding: 2.1rem 1.5rem;
+    border-radius: 50%;
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: .3rem;
+    color: black;
+    border: 1px solid black;
+    cursor: pointer;
+    background-color: transparent;
 }

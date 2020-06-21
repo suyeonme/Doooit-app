@@ -3,36 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Notable&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
 
     <title>Doooit</title>
 </head>
 <body>
     <header>
+        <div class="header-logo">
+            <img src="./img/logo.png" alt="logo">
+            <p>Doooit.</p>
+        </div>
         <p>You can do everything</p>
         <h1>Just do it.</h1>
+
+        <div class="img-container img-container--1">
+            <img src="./img/illustration-1.png" alt="Illustration">
+        </div>
+        <div class="img-container img-container--2">
+            <img src="./img/illustration-2.png" alt="Illustration">
+        </div>
     </header>
 
     <form>
-        <input type="text" class="todo-input">
-        <button class="todo-btn" type="submit">
-            <!-- Icon --> Do it
-        </button>
-
-        <div class="select">
-            <select name="todos" class="filter-todo">
-                <option value="all">All</option>
-                <option value="completed">Completed</option>
-                <option value="uncompleted">Uncompleted</option>
-            </select>
+        <div class="form">
+            <input type="text" class="todo-input" placeholder="Write down">
+            <div class="select">
+                <select name="todos" class="filter-todo">
+                    <option value="all">All</option>
+                    <option value="completed">Completed</option>
+                    <option value="uncompleted">Uncompleted</option>
+                </select>
+            </div>
+        </div>
+        <div class="btn-circle-color">
+            <button class="btn-circle todo-btn" type="submit">DO</button>
         </div>
     </form>
 
     <div class="todo-container">
         <ul class="todo-list"></ul> 
-    </div>
 
+        <!-- 
+        <div class="copyright">
+            &copy; copyright is by Suyeon Kang. Illustration by
+            <a href="https://icons8.com" target="_blank" class="link">https://icons8.com</a>.
+        </div>
+        -->
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/js/all.min.js" crossorigin="anonymous"></script>
     <script src="./js/app.js"></script>
 </body>
