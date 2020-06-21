@@ -39,19 +39,12 @@ header {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    padding: 2rem;
+    justify-content: space-between;
+    padding: 3rem;
 }
 
 .header-logo img {
     width: 7rem;
-}
-
-.header-logo p {
-    font-family: 'Notable', sans-serif;
-    font-size: 1.8rem;
-    letter-spacing: 0;
-    margin-left: -1rem;
 }
 
 .form {
@@ -188,15 +181,33 @@ select {
 }
 
 /* TEXT */
-h1 {
+.header-title {
+    display: flex;
+    align-items: center;
+    font-family: 'Notable', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 0;
+}
+
+.header-date {
+    font-size: 1.7rem;
+}
+
+.header-textBox {
+    margin-top: 7rem;
+    text-align: center;
+}
+
+.header-textBox h1 {
     font-family: 'Notable', sans-serif;
     font-size: 8rem;
     margin-bottom: 5rem;
 }
 
-header p {
+.header-textBox h2 {
     font-size: 2.5rem;
     letter-spacing: 5px;
+    font-weight: 300;
 }
 
 /* BUTTON */

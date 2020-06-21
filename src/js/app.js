@@ -9,7 +9,8 @@ const UIController = (function() {
         todoList: document.querySelector('.todo-list'),
         todoItem: document.querySelector('.todo'),
         filterOption: document.querySelector('.filter-todo'),
-        removeBtn: document.querySelector('.btn-delete')
+        removeBtn: document.querySelector('.btn-delete'),
+        headerLogo: document.querySelector('.header-logo')
     };
 
     return {
@@ -59,6 +60,20 @@ const UIController = (function() {
                 return;
             });
         },
+
+        renderDate: function() {
+            let now, year, months, month, day, markup;
+
+            now = new Date();
+            year = now.getFullYear();
+            months = ['January', 'Fubruary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'Ocober', 'November', 'December'];
+            month = months[now.getMonth()];
+            day = now.getDate();
+            markup = `
+                <h3 class="header-date">${month} ${day}, ${year}</h3> 
+            `;
+            elements.headerLogo.insertAdjacentHTML('beforeend', markup);
+        }
     }
 })();
 
@@ -153,4 +168,14 @@ const controller = (function(UICtrl, storageCtrl) {
     });
 
     string.filterOption.addEventListener('change', UICtrl.filterTodo);
+
+    return {
+        init: function() {
+            console.log('Application is started.');
+            UICtrl.renderDate();
+        }
+    }
 })(UIController,storageController);
+
+// Init
+controller.init();
