@@ -1,4 +1,12 @@
 'use strict'
+import axios from 'axios';
+
+
+/******  QUOTE CONTROLLER ******/
+class Quote {
+
+
+};
 
 /******  UI CONTROLLER ******/
 const UIController = (function() {

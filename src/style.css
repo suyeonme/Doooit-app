@@ -60,6 +60,7 @@ form input {
     background: #fff;
     min-width: 25%;
 }
+
 form input:focus {
     outline: none;
 }
@@ -79,9 +80,15 @@ form input:focus {
 }
 
 .img-container--2 {
-    top: 190%;
+    top: 180%;
     left: 10%;
     width: 17%;
+}
+
+.img-container--3 {
+    top: 50%;
+    left: 25%;
+    width: 7%;
 }
 
 /* TODO ITEM */
@@ -113,7 +120,7 @@ form button {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 7rem;
+    margin-top: 5rem;
 }
 
 .todo-list {
@@ -167,6 +174,19 @@ select {
     color: white;
     pointer-events: none;
     transition: all .4s ease;
+}
+
+.copyright {
+    position: relative;
+    margin: 5rem 0 2rem 0;
+    bottom: 0;
+    text-align: center;
+    color: black;
+}
+
+.copyright-link {
+    color: black;
+    text-decoration: none;
 }
 
 /* TRANSITION */
