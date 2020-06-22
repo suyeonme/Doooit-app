@@ -1,12 +1,52 @@
 'use strict'
-import axios from 'axios';
+/* import axios from 'axios'; */
 
 
 /******  QUOTE CONTROLLER ******/
 class Quote {
+    constructor (author, quote) {
+        this.author = author;
+        this.qute = quote
+    } 
 
+    async getQuote() {
+        fetch(`http://quotes.stormconsultancy.co.uk/random.json`)
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
 
+/*     async test() {
+        try {
+            let res = await fetch(`http://quotes.stormconsultancy.co.uk/random.json`);   
+            this.result = res;
+            console.log(res);
+            // console.log(this.result);
+        } catch (error) {
+            alert(error);
+        }
+    } */
 };
+const res = new Quote();
+res.getQuote();
+
+/* const res1 = new Quote();
+res1.test(); */
+
+
+/* async function getQuote() {
+    fetch(`http://quotes.stormconsultancy.co.uk/random.json`)
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+};
+
+getQuote(); */
+
 
 /******  UI CONTROLLER ******/
 const UIController = (function() {
@@ -18,7 +58,7 @@ const UIController = (function() {
         todoItem: document.querySelector('.todo'),
         filterOption: document.querySelector('.filter-todo'),
         removeBtn: document.querySelector('.btn-delete'),
-        headerLogo: document.querySelector('.header-logo')
+        dateContainer: document.querySelector('.header-quote')
     };
 
     return {
@@ -75,12 +115,12 @@ const UIController = (function() {
             now = new Date();
             year = now.getFullYear();
             months = ['January', 'Fubruary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'Ocober', 'November', 'December'];
-            month = months[now.getMonth()];
+            month = months[now.getMonth()].toUpperCase();
             day = now.getDate();
             markup = `
                 <h3 class="header-date">${month} ${day}, ${year}</h3> 
             `;
-            elements.headerLogo.insertAdjacentHTML('beforeend', markup);
+            elements.dateContainer.insertAdjacentHTML('afterbegin', markup);
         }
     }
 })();

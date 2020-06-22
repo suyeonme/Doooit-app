@@ -35,15 +35,15 @@ header {
     position: relative;
 }
 
-.header-logo {
+.header-container {
     width: 100%;
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
     padding: 3rem;
 }
 
-.header-logo img {
+.header-container img {
     width: 7rem;
 }
 
@@ -211,6 +211,20 @@ select {
 
 .header-date {
     font-size: 1.7rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.header-quote {
+    font-size: 1.5rem;
+}
+
+.header-quote p {
+    font-style: italic;
+}
+.header-quote address {
+    text-align: center;
+    margin-top: 1rem;
 }
 
 .header-textBox {
