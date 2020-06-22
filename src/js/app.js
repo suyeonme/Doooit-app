@@ -1,6 +1,4 @@
 'use strict'
-/* import axios from 'axios'; */
-
 
 /******  QUOTE CONTROLLER ******/
 class Quote {
