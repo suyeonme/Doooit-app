@@ -4,49 +4,28 @@
 
 /******  QUOTE CONTROLLER ******/
 class Quote {
-    constructor (author, quote) {
-        this.author = author;
-        this.qute = quote
-    } 
-
     async getQuote() {
-        fetch(`http://quotes.stormconsultancy.co.uk/random.json`)
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+        try {
+            let res = await (await fetch(`http://quotes.stormconsultancy.co.uk/random.json`)).json();
+            this.author = res.author;
+            this.quote = res.quote;
+        } catch (error) {
+            alert('Sorry. Something is wrong with quote.. :(');
+        }
     }
 
-/*     async test() {
-        try {
-            let res = await fetch(`http://quotes.stormconsultancy.co.uk/random.json`);   
-            this.result = res;
-            console.log(res);
-            // console.log(this.result);
-        } catch (error) {
-            alert(error);
-        }
-    } */
+    renderQuote(parent) {
+        const markup = `
+            <div class="header-quote">
+                <p>
+                    <q>${this.quote}</q>
+                    <address>by ${this.author}</address>
+                </p>
+            </div>
+        `;
+        parent.insertAdjacentHTML('beforeend', markup); 
+    }
 };
-const res = new Quote();
-res.getQuote();
-
-/* const res1 = new Quote();
-res1.test(); */
-
-
-/* async function getQuote() {
-    fetch(`http://quotes.stormconsultancy.co.uk/random.json`)
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch((error) => {
-        console.error('Error:', error);
-    });
-};
-
-getQuote(); */
-
 
 /******  UI CONTROLLER ******/
 const UIController = (function() {
@@ -218,11 +197,19 @@ const controller = (function(UICtrl, storageCtrl) {
     string.filterOption.addEventListener('change', UICtrl.filterTodo);
 
     return {
-        init: function() {
+        init: async function() {
             console.log('Application is started.');
             UICtrl.renderDate();
+
+            const quote = new Quote();
+            try {
+                await quote.getQuote();
+            } catch (error) {
+                console.log(error);
+            }
+            quote.renderQuote(string.dateContainer);
         }
-    }
+    };
 })(UIController,storageController);
 
 // Init
