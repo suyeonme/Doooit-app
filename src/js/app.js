@@ -46,18 +46,20 @@ const UIController = (function() {
         },
 
         addTodo: function() {
-            const markup = `
-            <div class="todo">
-                <li class="todo-item">${elements.todoInput.value}</li>
-                <button class="btn-complete btn"><i class="far fa-check-square icon" ></i></button>
-                <button class="btn-delete btn"><i class="far fa-trash-alt icon"></i></button>
-            </div>
-            `
-            elements.todoList.insertAdjacentHTML('beforeend', markup);
+            if (elements.todoInput.value) {
+                const markup = `
+                <div class="todo">
+                    <li class="todo-item">${elements.todoInput.value}</li>
+                    <button class="btn-complete btn"><i class="far fa-check-square icon" ></i></button>
+                    <button class="btn-delete btn"><i class="far fa-trash-alt icon"></i></button>
+                </div>
+                `
+                elements.todoList.insertAdjacentHTML('beforeend', markup);
+            }
         },
 
         filterTodo: function(e) {
-            const todos = Array.from(elements.todoList.childNodes);
+            const todos = elements.todoList.children;
 
             todos.forEach(todo => {
                 if (todo.classList !== undefined) {
@@ -118,12 +120,13 @@ const storageController = (function() {
 
     return {
             saveStorage: function(todo) {
-                // CHECK TODO EXIST IN LOCAL STORAGE
+                // CHECK TODO EXISTING IN LOCAL STORAGE
                 checkStorage();
 
                 // SAVE TODO TO LOCAL STORAGE
                 todos.push(todo);
-                localStorage.setItem('todos', JSON.stringify(todos));
+                if(todo !== "") localStorage.setItem('todos', JSON.stringify(todos));
+                
         },
 
         getStorage: function(e) {
@@ -131,24 +134,23 @@ const storageController = (function() {
                 todos = [];
             } else {
                 todos = JSON.parse(localStorage.getItem('todos'));
-        
-                todos.forEach(todo => {
-                    const todoList = document.querySelector('.todo-list');
-                    const markup = `
-                        <div class="todo">
-                            <li class="todo-item">${todo}</li>
-                            <button class="btn-complete btn"><i class="far fa-check-square icon" ></i></button>
-                            <button class="btn-delete btn"><i class="far fa-trash-alt icon"></i></button>
-                        </div>
-                    `;
-                    todoList.insertAdjacentHTML('beforeend', markup);
-                })
+                    todos.forEach(todo => {
+                        const todoList = document.querySelector('.todo-list');
+                        const markup = `
+                            <div class="todo">
+                                <li class="todo-item">${todo}</li>
+                                <button class="btn-complete btn"><i class="far fa-check-square icon" ></i></button>
+                                <button class="btn-delete btn"><i class="far fa-trash-alt icon"></i></button>
+                            </div>
+                        `;
+                        if(todo !== "") todoList.insertAdjacentHTML('beforeend', markup);
+                });
             };
         }, 
         
         removeTodo: function(todo) {
             checkStorage();
-            const todoIndex = todo.children[0].innerText; // Improve
+            const todoIndex = todo.children[0].innerText; 
             todos.splice(todos.indexOf(todoIndex), 1);
             localStorage.setItem('todos', JSON.stringify(todos));
         }
@@ -160,7 +162,7 @@ const storageController = (function() {
 const controller = (function(UICtrl, storageCtrl) {
     const string = UICtrl.DOMstrings;
 
-    window.addEventListener('DOMContentLoaded', storageCtrl.getStorage);
+    window.addEventListener('load', storageCtrl.getStorage);
 
     // CLICK TODO BUTTON
     string.todoBtn.addEventListener('click', e => {

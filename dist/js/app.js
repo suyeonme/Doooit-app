@@ -1,14 +1,9 @@
-var unique = require('uniq');
-
 'use strict';
-
 /******  QUOTE CONTROLLER ******/
 
 require("core-js/modules/es.array.concat");
 
 require("core-js/modules/es.array.for-each");
-
-require("core-js/modules/es.array.from");
 
 require("core-js/modules/es.array.index-of");
 
@@ -21,8 +16,6 @@ require("core-js/modules/es.object.define-property");
 require("core-js/modules/es.object.to-string");
 
 require("core-js/modules/es.promise");
-
-require("core-js/modules/es.string.iterator");
 
 require("core-js/modules/web.dom-collections.for-each");
 
@@ -117,11 +110,13 @@ var UIController = function () {
       field.value = '';
     },
     addTodo: function addTodo() {
-      var markup = "\n            <div class=\"todo\">\n                <li class=\"todo-item\">".concat(elements.todoInput.value, "</li>\n                <button class=\"btn-complete btn\"><i class=\"far fa-check-square icon\" ></i></button>\n                <button class=\"btn-delete btn\"><i class=\"far fa-trash-alt icon\"></i></button>\n            </div>\n            ");
-      elements.todoList.insertAdjacentHTML('beforeend', markup);
+      if (elements.todoInput.value) {
+        var markup = "\n                <div class=\"todo\">\n                    <li class=\"todo-item\">".concat(elements.todoInput.value, "</li>\n                    <button class=\"btn-complete btn\"><i class=\"far fa-check-square icon\" ></i></button>\n                    <button class=\"btn-delete btn\"><i class=\"far fa-trash-alt icon\"></i></button>\n                </div>\n                ");
+        elements.todoList.insertAdjacentHTML('beforeend', markup);
+      }
     },
     filterTodo: function filterTodo(e) {
-      var todos = Array.from(elements.todoList.childNodes);
+      var todos = elements.todoList.children;
       todos.forEach(function (todo) {
         if (todo.classList !== undefined) {
           switch (e.target.value) {
@@ -184,11 +179,11 @@ var storageController = function () {
 
   return {
     saveStorage: function saveStorage(todo) {
-      // CHECK TODO EXIST IN LOCAL STORAGE
+      // CHECK TODO EXISTING IN LOCAL STORAGE
       checkStorage(); // SAVE TODO TO LOCAL STORAGE
 
       todos.push(todo);
-      localStorage.setItem('todos', JSON.stringify(todos));
+      if (todo !== "") localStorage.setItem('todos', JSON.stringify(todos));
     },
     getStorage: function getStorage(e) {
       if (localStorage.getItem('todos') === null) {
@@ -197,8 +192,8 @@ var storageController = function () {
         todos = JSON.parse(localStorage.getItem('todos'));
         todos.forEach(function (todo) {
           var todoList = document.querySelector('.todo-list');
-          var markup = "\n                        <div class=\"todo\">\n                            <li class=\"todo-item\">".concat(todo, "</li>\n                            <button class=\"btn-complete btn\"><i class=\"far fa-check-square icon\" ></i></button>\n                            <button class=\"btn-delete btn\"><i class=\"far fa-trash-alt icon\"></i></button>\n                        </div>\n                    ");
-          todoList.insertAdjacentHTML('beforeend', markup);
+          var markup = "\n                            <div class=\"todo\">\n                                <li class=\"todo-item\">".concat(todo, "</li>\n                                <button class=\"btn-complete btn\"><i class=\"far fa-check-square icon\" ></i></button>\n                                <button class=\"btn-delete btn\"><i class=\"far fa-trash-alt icon\"></i></button>\n                            </div>\n                        ");
+          if (todo !== "") todoList.insertAdjacentHTML('beforeend', markup);
         });
       }
 
@@ -206,8 +201,7 @@ var storageController = function () {
     },
     removeTodo: function removeTodo(todo) {
       checkStorage();
-      var todoIndex = todo.children[0].innerText; // Improve
-
+      var todoIndex = todo.children[0].innerText;
       todos.splice(todos.indexOf(todoIndex), 1);
       localStorage.setItem('todos', JSON.stringify(todos));
     }
@@ -218,7 +212,7 @@ var storageController = function () {
 
 var controller = function (UICtrl, storageCtrl) {
   var string = UICtrl.DOMstrings;
-  window.addEventListener('DOMContentLoaded', storageCtrl.getStorage); // CLICK TODO BUTTON
+  window.addEventListener('load', storageCtrl.getStorage); // CLICK TODO BUTTON
 
   string.todoBtn.addEventListener('click', function (e) {
     e.preventDefault(); // Add todo to UI
@@ -293,4 +287,3 @@ var controller = function (UICtrl, storageCtrl) {
 
 
 controller.init();
-
