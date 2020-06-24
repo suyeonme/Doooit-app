@@ -1,9 +1,8 @@
-# Doooit!
+# :muscle: Doooit!
 Doooit is simple todo list app built with javascipt.  
 You can write down your own todo list TODAY!
 
 ## Prototype  
----
 <img width="1440" alt="Screen Shot 2020-06-22 at 3 02 58 PM" src="https://user-images.githubusercontent.com/55128990/85253601-843fef80-b499-11ea-8c20-bf47c24633da.png">
 
 ## :dizzy: Features
@@ -12,12 +11,10 @@ You can write down your own todo list TODAY!
   - You can get a daily random quote everyday.
   
 ## APIs
-----
 * Random quote is retrieved from http://quotes.stormconsultancy.co.uk/api
 * You can get API without API key from Storm Consultancy API.
 
 ## Getting started
----
 ```sh
 $ npm install
 $ cd dist
