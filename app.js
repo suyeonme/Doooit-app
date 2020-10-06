@@ -5,7 +5,7 @@ class Quote {
   async getQuote() {
     try {
       let res = await (
-        await fetch(`http://quotes.stormconsultancy.co.uk/random.json`)
+        await fetch(`//quotes.stormconsultancy.co.uk/random.json`)
       ).json();
       this.author = res.author;
       this.quote = res.quote;
@@ -65,7 +65,7 @@ const UIController = (function () {
     filterTodo: function (e) {
       const todos = Array.from(document.querySelectorAll('.todo'));
 
-      todos.forEach(todo => {
+      elements.todos.forEach(todo => {
         if (todo.classList !== undefined) {
           switch (e.target.value) {
             case 'all':
