@@ -1,32 +1,5 @@
 'use strict';
 
-/******  QUOTE CONTROLLER ******/
-class Quote {
-  async getQuote() {
-    try {
-      let res = await (
-        await fetch(`//quotes.stormconsultancy.co.uk/random.json`)
-      ).json();
-      this.author = res.author;
-      this.quote = res.quote;
-    } catch (error) {
-      alert('Sorry. Something is wrong with quote.. :(');
-    }
-  }
-
-  renderQuote(parent) {
-    const markup = `
-            <div class="header-quote">
-                <p>
-                    <q>${this.quote}</q>
-                    <address>by ${this.author}</address>
-                </p>
-            </div>
-        `;
-    parent.insertAdjacentHTML('beforeend', markup);
-  }
-}
-
 /******  UI CONTROLLER ******/
 const UIController = (function () {
   const elements = {
@@ -38,8 +11,6 @@ const UIController = (function () {
     filterOption: document.querySelector('.filter-todo'),
     removeBtn: document.querySelector('.btn-delete'),
     dateContainer: document.querySelector('.header-quote'),
-
-    // todos: document.querySelectorAll('.todo'),
   };
 
   return {
@@ -65,7 +36,7 @@ const UIController = (function () {
     filterTodo: function (e) {
       const todos = Array.from(document.querySelectorAll('.todo'));
 
-      elements.todos.forEach(todo => {
+      todos.forEach(todo => {
         if (todo.classList !== undefined) {
           switch (e.target.value) {
             case 'all':
@@ -212,16 +183,7 @@ const controller = (function (UICtrl, storageCtrl) {
 
   return {
     init: async function () {
-      console.log('Application is started.');
       UICtrl.renderDate();
-
-      const quote = new Quote();
-      try {
-        await quote.getQuote();
-      } catch (error) {
-        console.log(error);
-      }
-      quote.renderQuote(string.dateContainer);
     },
   };
 })(UIController, storageController);
