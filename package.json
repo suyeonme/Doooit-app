@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/suyeonme/Budgety-ES6.git"
+    "url": "git+https://github.com/suyeonme/Doooit-app.git"
   },
   "author": "Suyeon Kang",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/suyeonme/Budgety-ES6/issues"
+    "url": "https://github.com/suyeonme/Doooit-app/issues"
   },
-  "homepage": "https://github.com/suyeonme/Budgety-ES6#readme",
+  "homepage": "https://github.com/suyeonme/Doooit-app#readme",
   "devDependencies": {
     "@babel/cli": "^7.10.1",
     "@babel/core": "^7.10.2",
